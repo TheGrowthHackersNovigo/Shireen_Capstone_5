@@ -11,7 +11,7 @@
     <x:Property Name="io_TotalAmount" Type="InOutArgument(x:String)" />
     <x:Property Name="io_ExtractedText" Type="InOutArgument(x:String)" />
   </x:Members>
-  <sap:VirtualizedContainerService.HintSize>1473,1689</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>854,1698.6666666666667</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -113,18 +113,19 @@
       <AssemblyReference>mscorlib</AssemblyReference>
       <AssemblyReference>System.ServiceModel.Activities</AssemblyReference>
       <AssemblyReference>System.Text.RegularExpressions</AssemblyReference>
+      <AssemblyReference>System.Memory.Data</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="RetreivingInformationFromPdf" sap:VirtualizedContainerService.HintSize="496,1624" sap2010:WorkflowViewState.IdRef="Sequence_8">
+  <Sequence DisplayName="RetreivingInformationFromPdf" sap:VirtualizedContainerService.HintSize="496,1634" sap2010:WorkflowViewState.IdRef="Sequence_8">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
         <x:Boolean x:Key="IsPinned">False</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:ReadPDFText PreserveFormatting="{x:Null}" DisplayName="Read PDF Text" FileName="[&quot;C:\Users\Shireen.M\Documents\UiPath\Capstone_5\Data\Input\&quot;+in_TransactionItem.SpecificContent(&quot;WIID&quot;).ToString+&quot;.pdf&quot;]" sap:VirtualizedContainerService.HintSize="434,114" sap2010:WorkflowViewState.IdRef="ReadPDFText_2" Range="All" Text="[io_ExtractedText]" />
-    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="434,173" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="Info" Message="[io_ExtractedText]" />
-    <Assign sap:VirtualizedContainerService.HintSize="434,114" sap2010:WorkflowViewState.IdRef="Assign_1">
+    <ui:ReadPDFText PreserveFormatting="{x:Null}" DisplayName="Read PDF Text" FileName="[&quot;C:\Users\hp\Documents\UiPath\Shireen_Capstone_5\Data\Input\&quot;+in_TransactionItem.SpecificContent(&quot;WIID&quot;).ToString+&quot;.pdf&quot;]" sap:VirtualizedContainerService.HintSize="434,116" sap2010:WorkflowViewState.IdRef="ReadPDFText_2" Range="All" Text="[io_ExtractedText]" />
+    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="434,176.66666666666666" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="Info" Message="[io_ExtractedText]" />
+    <Assign sap:VirtualizedContainerService.HintSize="434,117.33333333333333" sap2010:WorkflowViewState.IdRef="Assign_1">
       <Assign.To>
         <OutArgument x:TypeArguments="x:String">[io_TxnId]</OutArgument>
       </Assign.To>
