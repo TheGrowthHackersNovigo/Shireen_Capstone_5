@@ -6,7 +6,7 @@
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>854,1872</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>854,1902.6666666666667</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ProcessTransaction_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="100">
@@ -150,7 +150,7 @@
       <AssemblyReference>System.Memory.Data</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:Annotation.AnnotationText="Invoke major steps of the business process, which are usually implemented by multiple subworkflows.&#xA;&#xA;If a BusinessRuleException is thrown, the transaction is skipped. &#xA;If another kind of exception occurs, the current transaction can be retried. " DisplayName="Process" sap:VirtualizedContainerService.HintSize="574,1807.3333333333333" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="Invoke major steps of the business process, which are usually implemented by multiple subworkflows.&#xA;&#xA;If a BusinessRuleException is thrown, the transaction is skipped. &#xA;If another kind of exception occurs, the current transaction can be retried. " DisplayName="Process" sap:VirtualizedContainerService.HintSize="574,1838" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="TxnId" />
       <Variable x:TypeArguments="x:String" Name="InvoiceId" />
@@ -189,13 +189,14 @@
         <InOutArgument x:TypeArguments="x:String" x:Key="io_ExtractedText">[ExtractedText]</InOutArgument>
       </ui:InvokeWorkflowFile.Arguments>
     </ui:InvokeWorkflowFile>
-    <Sequence DisplayName="CheckingWhetherVendorIsPresent" sap:VirtualizedContainerService.HintSize="512,1027.3333333333333" sap2010:WorkflowViewState.IdRef="Sequence_16">
+    <Sequence sap2010:Annotation.AnnotationText="Checking whether tax id is present in the the invoice pdf" DisplayName="CheckingWhetherVendorIsPresent" sap:VirtualizedContainerService.HintSize="512,1058" sap2010:WorkflowViewState.IdRef="Sequence_16">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <If Condition="[String.IsNullOrEmpty(TxnId)]" sap:VirtualizedContainerService.HintSize="450,916.6666666666666" sap2010:WorkflowViewState.IdRef="If_1">
+      <If Condition="[String.IsNullOrEmpty(TxnId)]" DisplayName="If : Tax id is present" sap:VirtualizedContainerService.HintSize="450,924.6666666666666" sap2010:WorkflowViewState.IdRef="If_1">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -203,13 +204,13 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
         <If.Then>
-          <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="416,465.3333333333333" sap2010:WorkflowViewState.IdRef="Sequence_14">
+          <Sequence DisplayName="Then : Send mail to the particular id" sap:VirtualizedContainerService.HintSize="416,465.3333333333333" sap2010:WorkflowViewState.IdRef="Sequence_14">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="354,176.66666666666666" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="Info" Message="[&quot;Tax id is empty&quot;]">
+            <ui:LogMessage DisplayName="Log Message : Tax id is empty" sap:VirtualizedContainerService.HintSize="354,176.66666666666666" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="Info" Message="[&quot;Tax id is empty&quot;]">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -217,7 +218,7 @@
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
             </ui:LogMessage>
-            <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="SendingMail - Invoke Workflow File (SendingMail.xaml)" sap:VirtualizedContainerService.HintSize="354,200.66666666666666" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_4" UnSafe="False" WorkflowFileName="SendingMail.xaml">
+            <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="SendingMail - Invoke Workflow File (SendingMail.xaml)" sap:VirtualizedContainerService.HintSize="354,200.66666666666666" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_4" UnSafe="False" WorkflowFileName="Workflow\SendingMail.xaml">
               <ui:InvokeWorkflowFile.Arguments>
                 <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Config">[in_Config]</InArgument>
                 <InArgument x:TypeArguments="ui:QueueItem" x:Key="in_TransactionItem">[in_TransactionItem]</InArgument>
@@ -227,25 +228,26 @@
           </Sequence>
         </If.Then>
         <If.Else>
-          <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="416,288.6666666666667" sap2010:WorkflowViewState.IdRef="Sequence_15">
+          <Sequence sap2010:Annotation.AnnotationText="Adding the vendor details" DisplayName="Else" sap:VirtualizedContainerService.HintSize="416,319.3333333333333" sap2010:WorkflowViewState.IdRef="Sequence_15">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                 <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="AddingVendorDetails - Invoke Workflow File (AddingVendorDetails.xaml)" sap:VirtualizedContainerService.HintSize="354,200.66666666666666" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_5" UnSafe="False" WorkflowFileName="AddingVendorDetails.xaml">
+            <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="AddingVendorDetails - Invoke Workflow File (AddingVendorDetails.xaml)" sap:VirtualizedContainerService.HintSize="354,200.66666666666666" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_5" UnSafe="False" WorkflowFileName="Workflow\AddingVendorDetails.xaml">
               <ui:InvokeWorkflowFile.Arguments>
-                <InArgument x:TypeArguments="x:String" x:Key="TxnId">[TxnId]</InArgument>
                 <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Config">[in_Config]</InArgument>
-                <InArgument x:TypeArguments="x:String" x:Key="InvoiceId">[InvoiceId]</InArgument>
-                <InArgument x:TypeArguments="x:String" x:Key="InvoiceDate">[InvoiceDate]</InArgument>
-                <InArgument x:TypeArguments="x:String" x:Key="Currency">[Currency]</InArgument>
-                <InArgument x:TypeArguments="x:String" x:Key="ItemDescription">[ItemDescription]</InArgument>
-                <InArgument x:TypeArguments="x:String" x:Key="NonTaxAmount">[NonTaxAmount]</InArgument>
-                <InArgument x:TypeArguments="x:String" x:Key="TaxAmount">[TaxAmount]</InArgument>
-                <InArgument x:TypeArguments="x:String" x:Key="TotalAmount">[TotalAmount]</InArgument>
                 <InArgument x:TypeArguments="ui:QueueItem" x:Key="in_TransactionItem">[in_TransactionItem]</InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="in_TxnId">[TxnId]</InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="in_InvoiceId">[InvoiceId]</InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="in_InvoiceDate">[InvoiceDate]</InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="in_Currency">[Currency]</InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="in_ItemDescription">[ItemDescription]</InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="in_NonTaxAmount">[NonTaxAmount]</InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="in_TaxAmount">[TaxAmount]</InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="in_TotalAmount">[TotalAmount]</InArgument>
               </ui:InvokeWorkflowFile.Arguments>
             </ui:InvokeWorkflowFile>
           </Sequence>
